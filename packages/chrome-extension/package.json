@@ -1,0 +1,73 @@
+{
+  "name": "@clerk/chrome-extension",
+  "version": "2.8.10",
+  "description": "Clerk SDK for Chrome extensions",
+  "keywords": [
+    "auth",
+    "authentication",
+    "passwordless",
+    "session",
+    "jwt",
+    "chrome",
+    "extension"
+  ],
+  "homepage": "https://clerk.com/",
+  "bugs": {
+    "url": "https://github.com/clerk/javascript/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clerk/javascript.git",
+    "directory": "packages/chrome-extension"
+  },
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "files": [
+    "background",
+    "dist",
+    "internal",
+    "react"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "postbuild": "node ../../scripts/search-for-rhc.mjs directory dist",
+    "build:declarations": "tsc -p tsconfig.declarations.json",
+    "clean": "rimraf ./dist",
+    "dev": "tsup --watch",
+    "dev:publish": "pnpm dev -- --env.publish",
+    "format": "node ../../scripts/format-package.mjs",
+    "format:check": "node ../../scripts/format-package.mjs --check",
+    "lint": "eslint src",
+    "lint:attw": "attw --pack . --profile node16",
+    "lint:publint": "publint",
+    "publish:local": "pnpm yalc push --replace  --sig",
+    "test": "vitest run",
+    "test:ci": "vitest run --maxWorkers=70%",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@clerk/clerk-js": "workspace:^",
+    "@clerk/react": "workspace:^",
+    "@clerk/shared": "workspace:^",
+    "@clerk/ui": "workspace:^",
+    "webextension-polyfill": "~0.12.0"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.1.12",
+    "@types/webextension-polyfill": "^0.12.3",
+    "type-fest": "^4.41.0"
+  },
+  "peerDependencies": {
+    "react": "catalog:peer-react",
+    "react-dom": "catalog:peer-react"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

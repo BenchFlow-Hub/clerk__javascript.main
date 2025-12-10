@@ -1,0 +1,100 @@
+# See https://github.com/actions/labeler
+
+astro:
+  - changed-files:
+      - any-glob-to-any-file: packages/astro/**
+
+backend:
+  - changed-files:
+      - any-glob-to-any-file: packages/backend/**
+
+chrome-extension:
+  - changed-files:
+      - any-glob-to-any-file: packages/chrome-extension/**
+
+clerk-js:
+  - changed-files:
+      - any-glob-to-any-file: packages/clerk-js/**
+
+elements:
+  - changed-files:
+      - any-glob-to-any-file: packages/elements/**
+
+expo:
+  - changed-files:
+      - any-glob-to-any-file: packages/expo/**
+
+express:
+  - changed-files:
+      - any-glob-to-any-file: packages/express/**
+
+fastify:
+  - changed-files:
+      - any-glob-to-any-file: packages/fastify/**
+
+localizations:
+  - changed-files:
+      - any-glob-to-any-file: packages/localizations/**
+
+nextjs:
+  - changed-files:
+      - any-glob-to-any-file: packages/nextjs/**
+
+nuxt:
+  - changed-files:
+      - any-glob-to-any-file: packages/nuxt/**
+
+react:
+  - changed-files:
+      - any-glob-to-any-file: packages/react/**
+
+react-router:
+  - changed-files:
+      - any-glob-to-any-file: packages/react-router/**
+
+remix:
+  - changed-files:
+      - any-glob-to-any-file: packages/remix/**
+
+tanstack:
+  - changed-files:
+      - any-glob-to-any-file: packages/tanstack-react-start/**
+
+testing:
+  - changed-files:
+      - any-glob-to-any-file: packages/testing/**
+
+themes:
+  - changed-files:
+      - any-glob-to-any-file: packages/themes/**
+
+types:
+  - changed-files:
+      - any-glob-to-any-file: packages/types/**
+
+vue:
+  - changed-files:
+      - any-glob-to-any-file: packages/vue/**
+
+playground:
+  - changed-files:
+      - any-glob-to-any-file: playground/**
+
+actions:
+  - changed-files:
+      - any-glob-to-any-file: .github/workflows/**
+
+integration:
+  - changed-files:
+      - any-glob-to-any-file: integration/**
+
+agent-toolkit:
+  - changed-files:
+      - any-glob-to-any-file: packages/agent-toolkit/**
+
+# Base branch labels
+core-3:
+  - base-branch: '^main$'
+
+core-2:
+  - base-branch: '^release/core-2$'

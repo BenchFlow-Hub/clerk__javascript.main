@@ -1,0 +1,318 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "remoteCache": {
+    "signature": true
+  },
+  "ui": "tui",
+  "globalDependencies": [
+    ".github/.cache-version",
+    ".npmrc",
+    "eslint.config.mjs",
+    "jest.*.ts",
+    "package.json",
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml",
+    "tsconfig.json",
+    "tsconfig.*.json"
+  ],
+  "globalEnv": [
+    "CLERK_*",
+    "EXPO_PUBLIC_CLERK_*",
+    "NEXT_PHASE",
+    "NEXT_PUBLIC_CLERK_*",
+    "NODE_ENV",
+    "NODE_VERSION",
+    "NPM_VERSION",
+    "PLASMO_PUBLIC_CLERK_*",
+    "PUBLIC_CLERK_*",
+    "REACT_APP_CLERK_*",
+    "RSDOCTOR",
+    "TZ",
+    "VERCEL",
+    "VITE_CLERK_*"
+  ],
+  "globalPassThroughEnv": [
+    "AWS_SECRET_KEY",
+    "GITHUB_TOKEN",
+    "ACTIONS_RUNNER_DEBUG",
+    "ACTIONS_STEP_DEBUG",
+    "VERCEL_AUTOMATION_BYPASS_SECRET"
+  ],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "*.d.ts",
+        "bundlewatch.config.json",
+        "src/**",
+        "tsconfig.json",
+        "tsconfig.build.json",
+        "tsconfig.declarations.json",
+        "tsup.config.ts",
+        "subpaths.mjs",
+        "!**/*.test.*",
+        "!**/test/**",
+        "!**/tests/**",
+        "!**/__tests__/**",
+        "!**/__mocks__/**",
+        "!**/__snapshots__/**",
+        "!CHANGELOG.md",
+        "!coverage/**",
+        "!dist/**",
+        "!examples/**",
+        "!node_modules/**"
+      ],
+      "outputLogs": "new-only",
+      "outputs": ["*/package.json", "dist/**", "scripts/**"]
+    },
+    "build:declarations": {
+      "dependsOn": ["build"],
+      "inputs": ["tsconfig.declarations.json"],
+      "outputLogs": "new-only",
+      "outputs": ["dist/**/*.d.ts", "dist/**/*.d.ts.map"]
+    },
+    "dev": {
+      "cache": false
+    },
+    "dev:current": {
+      "cache": false,
+      "dependsOn": ["^build", "dev"],
+      "persistent": true
+    },
+    "dev:sandbox": {
+      "cache": false,
+      "dependsOn": ["^build"],
+      "persistent": true
+    },
+    "clean": {
+      "cache": false
+    },
+    "test": {
+      "dependsOn": ["build"],
+      "inputs": [
+        "*.d.ts",
+        "bundlewatch.config.json",
+        "jest.*",
+        "src/**",
+        "tests/**",
+        "tsconfig.json",
+        "tsconfig.*.json",
+        "tsup.config.ts",
+        "!**/__snapshots__/**",
+        "!CHANGELOG.md",
+        "!coverage/**",
+        "!dist/**",
+        "!examples/**",
+        "!node_modules/**"
+      ],
+      "outputLogs": "new-only",
+      "outputs": []
+    },
+    "test:cache:clear": {
+      "cache": false
+    },
+    "lint": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "**/*.js",
+        "**/*.jsx",
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.json",
+        "**/*.md",
+        "**/*.mdx",
+        ".github/**",
+        "!*/package.json",
+        "!**/__snapshots__/**",
+        "!CHANGELOG.md",
+        "!coverage/**",
+        "!dist/**",
+        "!examples/**",
+        "!node_modules/**"
+      ],
+      "outputs": []
+    },
+    "lint:publint": {
+      "dependsOn": ["build"],
+      "outputs": [],
+      "cache": false
+    },
+    "lint:attw": {
+      "outputs": [],
+      "cache": false
+    },
+    "bundlewatch": {
+      "dependsOn": ["build"],
+      "env": [
+        "BUNDLEWATCH_GITHUB_TOKEN",
+        "CI_BRANCH",
+        "CI_BRANCH_BASE",
+        "CI_REPO_NAME",
+        "CI_REPO_OWNER",
+        "CI_COMMIT_SHA"
+      ],
+      "outputs": []
+    },
+    "format": {
+      "inputs": [
+        "**/*.js",
+        "**/*.jsx",
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.json",
+        "**/*.md",
+        "**/*.mdx",
+        "**/*.vue",
+        "**/*.astro",
+        "**/*.css",
+        "**/*.scss",
+        "**/*.html",
+        ".prettierignore",
+        "prettier.config.mjs",
+        "!**/__snapshots__/**",
+        "!CHANGELOG.md",
+        "!coverage/**",
+        "!dist/**",
+        "!examples/**",
+        "!node_modules/**"
+      ],
+      "outputs": []
+    },
+    "format:check": {
+      "inputs": [
+        "**/*.js",
+        "**/*.jsx",
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.json",
+        "**/*.md",
+        "**/*.mdx",
+        "**/*.vue",
+        "**/*.astro",
+        "**/*.css",
+        "**/*.scss",
+        "**/*.html",
+        ".prettierignore",
+        "prettier.config.mjs",
+        "!**/__snapshots__/**",
+        "!CHANGELOG.md",
+        "!coverage/**",
+        "!dist/**",
+        "!examples/**",
+        "!node_modules/**"
+      ],
+      "outputs": []
+    },
+    "//#test:integration:ap-flows": {
+      "env": ["CLEANUP", "DEBUG", "E2E_*", "INTEGRATION_INSTANCE_KEYS"],
+      "inputs": ["integration/**"],
+      "outputLogs": "new-only"
+    },
+    "//#test:integration:generic": {
+      "env": ["CLEANUP", "DEBUG", "E2E_*", "INTEGRATION_INSTANCE_KEYS"],
+      "inputs": ["integration/**"],
+      "outputLogs": "new-only"
+    },
+    "//#test:integration:express": {
+      "env": ["CLEANUP", "DEBUG", "E2E_*", "INTEGRATION_INSTANCE_KEYS"],
+      "inputs": ["integration/**"],
+      "outputLogs": "new-only"
+    },
+    "//#test:integration:nextjs": {
+      "env": ["CLEANUP", "DEBUG", "E2E_*", "INTEGRATION_INSTANCE_KEYS"],
+      "inputs": ["integration/**"],
+      "outputLogs": "new-only"
+    },
+    "//#test:integration:nextjs:canary": {
+      "env": ["CLEANUP", "DEBUG", "E2E_*", "INTEGRATION_INSTANCE_KEYS"],
+      "inputs": ["integration/**"],
+      "outputLogs": "new-only"
+    },
+    "//#test:integration:quickstart": {
+      "env": ["CLEANUP", "DEBUG", "E2E_*", "INTEGRATION_INSTANCE_KEYS", "VERCEL_AUTOMATION_BYPASS_SECRET"],
+      "inputs": ["integration/**"],
+      "outputLogs": "new-only"
+    },
+    "//#test:integration:astro": {
+      "env": ["CLEANUP", "DEBUG", "E2E_*", "INTEGRATION_INSTANCE_KEYS"],
+      "inputs": ["integration/**"],
+      "outputLogs": "new-only"
+    },
+    "//#test:integration:localhost": {
+      "env": ["CLEANUP", "DEBUG", "E2E_*", "INTEGRATION_INSTANCE_KEYS", "NODE_EXTRA_CA_CERTS"],
+      "inputs": ["integration/**"],
+      "outputLogs": "new-only"
+    },
+    "//#test:integration:sessions": {
+      "env": ["CLEANUP", "DEBUG", "DISABLE_WEB_SECURITY", "E2E_*", "INTEGRATION_INSTANCE_KEYS", "NODE_EXTRA_CA_CERTS"],
+      "inputs": ["integration/**"],
+      "outputLogs": "new-only"
+    },
+    "//#test:integration:sessions:staging": {
+      "env": ["CLEANUP", "DEBUG", "DISABLE_WEB_SECURITY", "E2E_*", "INTEGRATION_INSTANCE_KEYS", "NODE_EXTRA_CA_CERTS"],
+      "inputs": ["integration/**"],
+      "outputLogs": "new-only"
+    },
+    "//#test:integration:handshake": {
+      "env": ["CLEANUP", "DEBUG", "DISABLE_WEB_SECURITY", "E2E_*", "INTEGRATION_INSTANCE_KEYS", "NODE_EXTRA_CA_CERTS"],
+      "inputs": ["integration/**"],
+      "outputLogs": "new-only"
+    },
+    "//#test:integration:handshake:staging": {
+      "env": ["CLEANUP", "DEBUG", "DISABLE_WEB_SECURITY", "E2E_*", "INTEGRATION_INSTANCE_KEYS", "NODE_EXTRA_CA_CERTS"],
+      "inputs": ["integration/**"],
+      "outputLogs": "new-only"
+    },
+    "//#test:integration:expo-web": {
+      "env": ["CLEANUP", "DEBUG", "E2E_*", "INTEGRATION_INSTANCE_KEYS"],
+      "inputs": ["integration/**"],
+      "outputLogs": "new-only"
+    },
+    "//#test:integration:tanstack-react-start": {
+      "env": ["CLEANUP", "DEBUG", "E2E_*", "INTEGRATION_INSTANCE_KEYS"],
+      "inputs": ["integration/**"],
+      "outputLogs": "new-only"
+    },
+    "//#test:integration:vue": {
+      "env": ["CLEANUP", "DEBUG", "E2E_*", "INTEGRATION_INSTANCE_KEYS"],
+      "inputs": ["integration/**"],
+      "outputLogs": "new-only"
+    },
+    "//#test:integration:nuxt": {
+      "env": ["CLEANUP", "DEBUG", "E2E_*", "INTEGRATION_INSTANCE_KEYS"],
+      "inputs": ["integration/**"],
+      "outputLogs": "new-only"
+    },
+    "//#test:integration:react-router": {
+      "env": ["CLEANUP", "DEBUG", "E2E_*", "INTEGRATION_INSTANCE_KEYS"],
+      "inputs": ["integration/**"],
+      "outputLogs": "new-only"
+    },
+    "//#test:integration:billing": {
+      "env": ["CLEANUP", "DEBUG", "E2E_*", "INTEGRATION_INSTANCE_KEYS"],
+      "inputs": ["integration/**"],
+      "outputLogs": "new-only"
+    },
+    "//#test:integration:machine": {
+      "env": ["CLEANUP", "DEBUG", "E2E_*", "INTEGRATION_INSTANCE_KEYS"],
+      "inputs": ["integration/**"],
+      "outputLogs": "new-only"
+    },
+    "//#test:integration:custom": {
+      "env": ["CLEANUP", "DEBUG", "E2E_*", "INTEGRATION_INSTANCE_KEYS"],
+      "inputs": ["integration/**"],
+      "outputLogs": "new-only"
+    },
+    "//#typedoc:generate": {
+      "dependsOn": ["@clerk/nextjs#build", "@clerk/react#build", "@clerk/shared#build"],
+      "inputs": ["tsconfig.typedoc.json", "typedoc.config.mjs"],
+      "outputs": [".typedoc/**"],
+      "outputLogs": "new-only"
+    },
+    "//#test:typedoc": {
+      "dependsOn": ["//#typedoc:generate"],
+      "inputs": [".typedoc/**"],
+      "outputLogs": "new-only"
+    }
+  }
+}

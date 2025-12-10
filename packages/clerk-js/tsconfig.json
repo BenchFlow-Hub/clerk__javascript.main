@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "declaration": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
+    "lib": ["dom", "dom.iterable", "es2021.intl"],
+    "module": "esnext",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "resolveJsonModule": true,
+    "sourceMap": false,
+    "strict": true,
+    "target": "ES2019",
+    "useUnknownInCatchVariables": false,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src", "vitest.config.mts", "vitest.setup.mts", "../shared/internal/clerk-js/componentGuards.ts"]
+}
